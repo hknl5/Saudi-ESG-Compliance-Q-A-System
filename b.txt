@@ -1,0 +1,70 @@
+actual question: How do commercial banks incorporate ESG factors into their credit analysis?
+Retrieving relevant chunks...
+
+Query Expansion Variants:
+- How do commercial banks incorporate ESG factors into their credit analysis?
+- Explain: How do commercial banks incorporate ESG factors into their credit analysis?
+- Clarify the meaning of: How do commercial banks incorporate ESG factors into their credit analysis?
+- What does this mean: How do commercial banks incorporate ESG factors into their credit analysis??
+- Definition of: How do commercial banks incorporate ESG factors into their credit analysis?
+
+Raw Retrieved Chunks with Similarity Scores:
+Chunk 1
+   From: commercial-banks-standard_en-gb.pdf
+   Matched Query: How do commercial banks incorporate ESG factors into their credit analysis?
+   Score: 0.8859
+   Text: The entity shall describe its approach to the incorporation of environmental, social and governance (ESG) factors in its credit analysis....
+
+Chunk 2
+   From: investment-banking-and-brokerage-standard_en-gb.pdf
+   Matched Query: Definition of: How do commercial banks incorporate ESG factors into their credit analysis?
+   Score: 0.8833
+   Text: Integration of ESG factors is defined as the systematic and explicit inclusion of material ESG factors into traditional fundamental financial analysis...
+
+Chunk 3
+   From: commercial-banks-standard_en-gb.pdf
+   Matched Query: How do commercial banks incorporate ESG factors into their credit analysis?
+   Score: 0.8809
+   Text: 5.1.4 Approach to incorporating ESG factors into assessing creditworthiness of borrowers...
+
+Chunk 4
+   From: commercial-banks-standard_en-gb.pdf
+   Matched Query: How do commercial banks incorporate ESG factors into their credit analysis?
+   Score: 0.8808
+   Text: 11 The entity may disclose additional quantitative measures related to its approach to the incorporation of ESG factors in credit analysis, such as:...
+
+Chunk 5
+   From: commercial-banks-standard_en-gb.pdf
+   Matched Query: How do commercial banks incorporate ESG factors into their credit analysis?
+   Score: 0.8778
+   Text: As financial intermediaries, commercial banks contribute to significant positive and negative environmental and social externalities through their len...
+
+Re-ranking chunks with GPT...
+Generating final answer...
+
+================== SOURCES ==================
+
+Chunk 1 from commercial-banks-standard_en-gb.pdf
+The entity shall describe its approach to the incorporation of environmental, social and governance (ESG) factors in its credit analysis.
+---
+Chunk 2 from investment-banking-and-brokerage-standard_en-gb.pdf
+Integration of ESG factors is defined as the systematic and explicit inclusion of material ESG factors into traditional fundamental financial analysis through the consideration of qualitative risks and opportunities, quantitative metrics, and the incorporation of ESG variables into models to inform 
+---
+Chunk 3 from commercial-banks-standard_en-gb.pdf
+5.1.4 Approach to incorporating ESG factors into assessing creditworthiness of borrowers
+---
+
+================== FINAL ANSWER ==================
+
+Answer 1:
+Commercial banks incorporate ESG factors into their credit analysis by systematically and explicitly including material ESG factors into traditional fundamental financial analysis. They consider qualitative risks and opportunities, quantitative metrics, and incorporate ESG variables into models to inform their decision-making processes in assessing the creditworthiness of borrowers.
+
+Answer 2:
+Commercial banks incorporate ESG factors into their credit analysis through a systematic and explicit inclusion of material ESG factors into traditional fundamental financial analysis. This is done by considering qualitative risks and opportunities, quantitative metrics, and incorporating ESG variables into models. These aspects collectively inform the bank's decision-making processes involved in proprietary investing and lending. This approach thus influences the way they assess the creditworthiness of borrowers.
+
+Answer 3:
+Commercial banks incorporate ESG factors into their credit analysis by systematically and explicitly including these material ESG factors into traditional fundamental financial analysis. This is done through the consideration of qualitative risks and opportunities, quantitative metrics, and incorporating ESG variables into models in order to inform their decision-making processes involved in proprietary investing and lending. The specifics of how these ESG factors are incorporated into assessing the creditworthiness of borrowers are determined by the bank's own approach.
+
+
+GPT Evaluation:
+ Answer 2 is the best as it is the most comprehensive and clear. Besides mentioning the systematic inclusion of ESG factors into credit analysis through qualitative risks, opportunities, and quantitative metrics, it also clarifies how ESG factors get incorporated into models. The answer then clearly ties all these elements to the decision-making processes in lending and investing, which ultimately impact the assessment of the creditworthiness of borrowers. This answer provides a complete understanding of how ESG factors are incorporated in commercial banks' credit analysis.

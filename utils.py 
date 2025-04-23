@@ -1,0 +1,100 @@
+import os
+import json
+import hashlib
+import re
+from tqdm import tqdm
+from PyPDF2 import PdfReader
+from unstructured.partition.pdf import partition_pdf
+
+
+sector_folder = "data/ESG_Categorized/Sector_Specific_Standards"
+output_file = "sector_chunks.jsonl"
+
+# Valid content types to keep
+valid_categories = {"NarrativeText", "Title", "ListItem"}
+
+# Keywords to exclude (common noise or non-content)
+exclusion_keywords = [
+    "figure", "table of contents", "disclaimer", "copyright",
+    "appendix", "contact us", "page ", "for more information",
+    "www.", "http", "@", "email", "fax"
+]
+
+# Minimum and maximum word thresholds
+min_words = 8
+max_words = 300
+
+# Track unique hashes to remove duplicates
+seen_hashes = set()
+clean_chunks = []
+
+# Function to check if a PDF is likely scanned (image-only, no extractable text)
+def is_scanned_pdf(filepath):
+    try:
+        reader = PdfReader(filepath)
+        for page in reader.pages:
+            text = page.extract_text()
+            if text and len(text.strip()) > 30:
+                return False  # This file has extractable text
+        return True  # No usable text found → likely scanned
+    except:
+        return True  # If unreadable, skip it
+
+        # Process only sector-specific standard files
+for file in os.listdir(sector_folder):
+    if not file.lower().endswith(".pdf"):
+        continue
+
+    file_path = os.path.join(sector_folder, file)
+
+    if is_scanned_pdf(file_path):
+        continue
+
+    try:
+        elements = partition_pdf(
+            filename=file_path,
+            strategy="hi_res",
+            infer_table_structure=True,
+            include_metadata=True
+        )
+
+        for el in elements:
+            text = el.text.strip() if el.text else ""
+            word_count = len(text.split())
+
+            if (
+                el.category not in valid_categories or
+                word_count < min_words or
+                word_count > max_words or
+                any(keyword in text.lower() for keyword in exclusion_keywords) or
+                text.isupper() or
+                re.fullmatch(r"[\d\s\.\,\-\:\%]+", text) or
+                re.search(r"[{}|=<>@#~^`]", text)
+            ):
+                continue
+
+            hashable_text = text.lower()
+            content_hash = hashlib.md5(hashable_text.encode("utf-8")).hexdigest()
+            if content_hash in seen_hashes:
+                continue
+            seen_hashes.add(content_hash)
+
+            cleaned_text = re.sub(r"\s+", " ", text)
+            chunk = {
+                "text": cleaned_text,
+                "source_file": file,
+                "category": "Sector_Specific_Standards",
+                "element_type": el.category,
+                "page_number": el.metadata.page_number if el.metadata else None,
+                "language": "EN",
+                "tokens": word_count
+            }
+            clean_chunks.append(chunk)
+
+    except Exception as e:
+        print(f"Error in {file}: {str(e)}")
+
+# Save output to JSONL
+with open(output_file, "w", encoding="utf-8") as f:
+    for chunk in clean_chunks:
+        f.write(json.dumps(chunk, ensure_ascii=False) + "\n")
